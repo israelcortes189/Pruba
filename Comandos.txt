@@ -1,0 +1,66 @@
+Router 1: 
+enable
+conf t
+int fa0/0
+ip address 120.89.0.1 255.255.192.0
+no sh
+exit
+int se0/0/0
+ip address 120.89.132.1 255.255.255.252
+clock rate 128000
+no sh
+int se0/0/1
+ip address 120.89.132.9 255.255.255.252
+clock rate 128000
+no sh
+exit
+router rip
+version 2
+network 120.89.0.0
+network 120.89.132.0
+network 120.89.132.8
+
+Router 2:
+enable
+conf t
+int fa0/0
+ip address 120.89.96.1 255.255.224.0
+no sh
+int se0/0/1
+ip address 120.89.132.5 255.255.255.252
+clock rate 128000
+no sh
+int se0/0/0
+ip address 120.89.132.2 255.255.255.252
+clock rate 128000
+no sh
+exit
+router rip
+version 2
+network 120.89.96.0
+network 120.89.132.0
+network 120.89.132.4
+
+Router 3:
+enable
+conf t
+int fa0/0
+ip address 120.89.128.1 255.255.252.0
+no sh
+int fa0/1
+ip address 120.89.64.1 255.255.224.0
+no sh
+int se0/0/1
+ip address 120.89.132.10 255.255.255.252
+clock rate 128000
+no sh
+int se0/0/0
+ip address 120.89.132.6 255.255.255.252
+clock rate 128000
+no sh
+router rip
+version 2
+network 120.89.132.4
+network 120.89.132.8
+network 120.89.64.0
+network 120.89.128.0
